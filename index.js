@@ -5,7 +5,7 @@ const port = 3002;
 
 // Define a simple route
 app.get('/hello', (req, res) => {
-  res.send('Hello, Express!');
+  res.json({message: 'Hello, Express!'});
 });
 
 app.get('/hello2', (req, res) => {
