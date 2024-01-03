@@ -1,29 +1,16 @@
 // db.js
 
-import { MongoClient } from 'mongodb';
-import dotenv from 'dotenv';
+import mongoose from "mongoose";
+const connect = async () => {
+    try {
+        await mongoose.connect('mongodb+srv://Admin:AuV8Ac5qyjPdNowF@cluster0.egaabsh.mongodb.net/?retryWrites=true&w=majority', {
+          
+        });
+        console.log('MongoDB connected successfully');
+    } catch (error) {
+        console.error('Error connecting to MongoDB:', error.message);
+        process.exit(1); // Exit the process with a failure code
+    }
+};
 
-dotenv.config();
-
-const uri = process.env.MONGODB_URI;
-const client = new MongoClient(uri, { useUnifiedTopology: true });
-
-async function connect() {
-  try {
-    await client.connect();
-    console.log('Connected to MongoDB');
-  } catch (error) {
-    console.error('Error connecting to MongoDB:', error);
-    process.exit(1);
-  }
-}
-
-function getClient() {
-  return client;
-}
-
-function getDb() {
-  return client.db();
-}
-
-export { connect, getClient, getDb };
+export {connect}
